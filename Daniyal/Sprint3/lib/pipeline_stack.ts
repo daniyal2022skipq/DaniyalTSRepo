@@ -17,12 +17,12 @@ export class DaniyalPipeline extends Stack {
         //Synth Pipeline Hello
         const synth = new pipelines.ShellStep('Synth', {
             input: source,
-            commands: ['cd DaniyalTSRepo/Sprint3', 'npm ci', 'npm run build', 'npx cdk synth'],
-            primaryOutputDirectory: 'DaniyalTSRepo/Sprint3/cdk.out',
+            commands: ['cd Daniyal/Sprint3', 'npm ci', 'npm run build', 'npx cdk synth'],
+            primaryOutputDirectory: 'Daniyal/Sprint3/cdk.out',
         });
 
         const unitTest = new pipelines.ShellStep('UnitTests', {
-            commands: ['cd DaniyalTSRepo/Sprint3', 'npm ci', 'npm run test']
+            commands: ['cd Daniyal/Sprint3', 'npm ci', 'npm run test']
         });
 
         const daniyalPipeline = new pipelines.CodePipeline(this, 'DaniyalFarmanNewPipeline', { synth: synth });
