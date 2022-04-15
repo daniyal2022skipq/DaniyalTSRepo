@@ -177,7 +177,7 @@ export class Sprint3Stack extends Stack {
   create_lambda(this: any, id: string, handler: string, asset: string, layer: any, role: any) {
     return new lambda.Function(this, "DaniyalWebHealthLambda", {
       code: lambda.Code.fromAsset(asset),
-      runtime: lambda.Runtime.NODEJS_14_X,
+      runtime: lambda.Runtime.NODEJS_12_X,
       handler: handler,
       layers: [layer],
       role: role,
