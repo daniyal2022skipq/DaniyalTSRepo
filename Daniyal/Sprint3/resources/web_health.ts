@@ -32,7 +32,7 @@ async function getLatency(url: any) {
     const latency = await axios.get(url);
     let endTime = new Date().getTime()
     let delta = endTime - startTime;
-    return delta * 0.0001;
+    return delta * 0.001;
 
 }
 async function getAvailability(url: any) {
