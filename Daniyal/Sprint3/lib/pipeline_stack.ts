@@ -17,7 +17,7 @@ export class DaniyalPipeline extends Stack {
         //Synth Pipeline Hello
         const synth = new pipelines.ShellStep('Synth', {
             input: source,
-            commands: ['cd Daniyal/Sprint3', 'npm ci', 'npm run build', 'npx cdk synth'],
+            commands: ['cd Daniyal/Sprint3', 'npm ci', 'npm run build', 'npx cdk synth','cd layer/nodejs','npm install axios'],
             primaryOutputDirectory: 'Daniyal/Sprint3/cdk.out',
         });
 
