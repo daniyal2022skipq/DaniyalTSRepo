@@ -47,7 +47,7 @@ export class Sprint3Stack extends Stack {
     let role = this.create_lambda_role();
 
     //Calling Lambda Function
-    const web_Health = this.create_lambda("DaniyalWebHealthLambda", "web_health.handler", "./resources", layer, role);
+    const web_Health = this.create_lambda("DaniWebLambda", "web_health.handler", "./resources", layer, role);
 
     //Lambda RemovalPolicy
     web_Health.applyRemovalPolicy(RemovalPolicy.DESTROY)
@@ -79,7 +79,7 @@ export class Sprint3Stack extends Stack {
 
     //Duration Alarm      
     let duration_alarm = new cloudwatch.Alarm(this,
-      id = "Daniyal Duration Alarm", {
+      id = "DaniyalDurationAlarm", {
       comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
       threshold: c.AVAILABILITY_THRESHOLD1,
       evaluationPeriods: 1,
@@ -97,7 +97,7 @@ export class Sprint3Stack extends Stack {
     });
 
 
-    let concurrent_alarm = new cloudwatch.Alarm(this, id = "Daniyal Concurrent Alarm", {
+    let concurrent_alarm = new cloudwatch.Alarm(this, id = "DaniyalConcurrentAlarm", {
       comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_THRESHOLD,
       threshold: c.AVAILABILITY_THRESHOLD1,
       evaluationPeriods: 1,
@@ -150,7 +150,7 @@ export class Sprint3Stack extends Stack {
 
     //CodeDeploy
     const version = web_Health.currentVersion;
-    const version1Alias = new lambda.Alias(this, 'Daniyalalias', {
+    const version1Alias = new lambda.Alias(this, 'DaniyalAlias', {
       aliasName: 'prod',
       version,
     });
@@ -175,7 +175,7 @@ export class Sprint3Stack extends Stack {
 
 
   create_lambda(this: any, id: string, handler: string, asset: string, layer: any, role: any) {
-    return new lambda.Function(this, "DaniyalWebHealthLambda", {
+    return new lambda.Function(this, "DaniWebLambda", {
       code: lambda.Code.fromAsset(asset),
       runtime: lambda.Runtime.NODEJS_12_X,
       handler: handler,

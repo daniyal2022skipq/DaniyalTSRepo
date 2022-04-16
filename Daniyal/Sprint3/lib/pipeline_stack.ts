@@ -10,7 +10,7 @@ export class DaniyalPipeline extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props);
 
-        const source = pipelines.CodePipelineSource.gitHub('daniyal2022skipq/DaniyalTSRepo', 'main', {
+        const source = pipelines.CodePipelineSource.gitHub('daniyal2022skipq/Orion_TS', 'main', {
             authentication: cdk.SecretValue.secretsManager('daniyaltoken'),
             trigger: actions.GitHubTrigger.POLL
         });
@@ -25,7 +25,7 @@ export class DaniyalPipeline extends Stack {
             commands: ['cd Daniyal/Sprint3', 'npm ci', 'npm run test']
         });
 
-        const daniyalPipeline = new pipelines.CodePipeline(this, 'DaniyalFarmanNewPipeline', { synth: synth });
+        const daniyalPipeline = new pipelines.CodePipeline(this, 'DaniPipeline', { synth: synth });
 
         const beta = new DaniyalFarmanStageStack(this, "BETA");
         const prod = new DaniyalFarmanStageStack(this, "Prod");

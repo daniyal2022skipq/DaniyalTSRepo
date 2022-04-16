@@ -6,7 +6,10 @@ import * as c from "./constant";
 
 exports.handler = async function (event: any) {
     let values: any = {}
+
+    //instantiating cloudwatchpublish object
     let cw = new CloudWatchPublish()
+
     //Initiliazing _Loop
     for (let url = 0; url < c.URL_TO_MONITOR.length; url++) {
 
